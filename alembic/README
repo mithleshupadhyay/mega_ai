@@ -1,0 +1,4 @@
+Alembic environment for the Mega AI assignment service.
+
+The application still creates tables automatically on startup for zero-step Docker Compose review.
+This scaffold exists so reviewers can inspect a production-style migration path.

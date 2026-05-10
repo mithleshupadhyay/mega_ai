@@ -1,0 +1,64 @@
+[tool.poetry]
+name = "mega-ai-assignment"
+version = "0.1.0"
+description = "Real-time multi-agent LLM orchestration and evaluation system for Mega AI take-home assignment."
+authors = ["Mithlesh Upadhyay <mithleshupadhyay515@gmail.com>"]
+readme = "README.md"
+packages = [
+  { include = "mega_ai", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+fastapi = ">=0.115.0"
+uvicorn = { version = ">=0.30.0", extras = ["standard"] }
+pydantic = ">=2.8.0"
+pydantic-settings = ">=2.4.0"
+sqlalchemy = ">=2.0.32"
+psycopg = { version = ">=3.2.1", extras = ["binary"] }
+python-dotenv = ">=1.0.1"
+alembic = ">=1.16.0"
+
+[tool.poetry.scripts]
+uvicorn = "uvicorn:main"
+mega-ai-worker = "mega_ai.core.tasks.worker:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.3.0"
+pytest-cov = ">=5.0.0"
+httpx = ">=0.27.0"
+ruff = ">=0.6.0"
+mypy = ">=1.11.0"
+nox = ">=2025.5.1"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["B008"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = []
+strict = false
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = true
+exclude = ["tests/", "src/mega_ai/db/pgv/models/"]
+
+[[tool.mypy.overrides]]
+module = ["mega_ai.db.pgv.models", "mega_ai.db.pgv.models.*"]
+follow_imports = "skip"
+ignore_errors = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
