@@ -86,37 +86,6 @@ Optional Alembic check with local SQLite:
 DATABASE_URL=sqlite:///./mega_ai.db poetry run alembic upgrade head
 ```
 
-## Submission Checklist
-
-Before submitting the GitHub URL to DevMesh, run:
-
-```bash
-cp .env.example .env
-set -a && source .env && set +a
-make check
-make docker-up-build
-curl http://localhost:${API_HOST_PORT}/v1/evals/latest
-curl -N -X POST http://localhost:${API_HOST_PORT}/v1/query/stream \
-  -H "content-type: application/json" \
-  -d '{"query":"How many public API endpoints are required?"}'
-make docker-down
-```
-
-Then push the repository to a public GitHub repo and submit that URL on DevMesh.
-Do not commit `.env`, virtual environments, local databases, or cache folders.
-
-If this folder is not already a Git repository:
-
-```bash
-git init
-git add .
-git commit -m "Build Mega AI multi-agent orchestration assignment"
-git branch -M main
-git remote add origin https://github.com/<github-username>/<repo-name>.git
-git push -u origin main
-```
-
-Submit the resulting public repository URL in the DevMesh "GitHub repo URL" field.
 
 ## API Usage
 
