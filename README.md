@@ -1,6 +1,6 @@
-# Mega AI Multi-Agent LLM Orchestration Assignment
+# Multi-Agent LLM Orchestration
 
-Real-time multi-agent orchestration and evaluation system for the Mega AI LLM Engineer take-home assignment.
+Real-time multi-agent orchestration and evaluation system, originally built as an LLM Engineer take-home assignment.
 
 The implementation is intentionally deterministic by default so reviewers can run it without paid LLM keys. It still models the production concerns the assignment asks for: dynamic orchestration, shared context, tool failure contracts, context budgets, multi-hop retrieval, critique, synthesis, prompt rewrites, SSE streaming, persistent traces, and reproducible eval runs.
 
